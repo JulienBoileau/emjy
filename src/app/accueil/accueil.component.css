@@ -1,0 +1,230 @@
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4rem 6vw;
+  flex-wrap: wrap;
+
+  .hero-text {
+    flex: 1;
+    min-width: 300px;
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      margin-bottom: -20px;
+      line-height: 80px;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      margin-bottom: 1rem;
+      margin-top: 0;
+
+      .underline-left {
+        display: inline-block;
+        position: relative;
+      }
+
+      .underline-left::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40%;
+        height: 4px;
+        background: #a44a06;
+      }
+    }
+
+    #video {
+      color: #a44a06;
+    }
+
+    p {
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+      margin-right: 2vw;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #a44a06;
+      color: #fff;
+      padding: 0.8rem 2rem;
+      font-size: 1.2rem;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: all 0.3s;
+
+      &:hover {
+        cursor: pointer;
+        background: #d9862e;
+      }
+    }
+
+    .services-btn:hover {
+      outline: 2px solid white;
+    }
+
+    .contact-btn {
+      background: #fff;
+      color: #a44a06;
+      margin-left: 1rem;
+
+      i {
+        margin-right: 0.5rem;
+      }
+
+      &:hover {
+        outline: 2px solid #a44a06;
+        background: #ffe0b3;
+      }
+    }
+  }
+
+  .hero-image {
+    position: relative;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    animation: slideFadeIn 1s ease forwards;
+    opacity: 0;
+    min-width: 300px;
+    margin-top: 2rem;
+
+    .image-container {
+      position: relative;
+      display: inline-block;
+
+      img {
+        display: block;
+        max-height: clamp(250px, 50vw, 460px);
+        width: auto;
+        outline: 3px solid #fff;
+        border-radius: 10px;
+        transition: filter 0.3s;
+      }
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        border-radius: 10px;
+        opacity: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: opacity 0.3s;
+      }
+
+      &:hover img {
+        filter: brightness(0.7);
+      }
+
+      &:hover .overlay {
+        opacity: 1;
+      }
+
+      .ticket-link {
+        background: #a44a06;
+        color: #fff;
+        padding: 0.4rem 1.5rem;
+        border-radius: 30px;
+        font-size: 1.2rem;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        transition: background 0.3s;
+
+        i {
+          font-size: 1.3rem;
+        }
+
+        &:hover {
+          background: #d9862e;
+        }
+      }
+    }
+
+    .badge {
+      z-index: 1000;
+      position: absolute;
+      top: 10px;
+      left: 22%;
+      background: #5d5752;
+      opacity: 70%;
+      color: #fff;
+      padding: 0.4rem 0.7rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background: #4caf50;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+/* animation image */
+@keyframes slideFadeIn {
+  0% {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* responsive spécifique */
+@media (max-width: 768px) {
+
+  h1{
+    margin-top: 0;
+  }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 5vw;
+
+    .hero-text, .hero-image {
+      flex: unset;
+      width: 100%;
+    }
+
+    .hero-image {
+      margin-top: 4rem;
+
+      .badge {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .image-container {
+        position: relative;
+        display: inline-block;
+  
+        img {
+          max-height: clamp(350px, 50vw, 460px);
+          width: auto;
+        }
+      }
+    }
+  }
+}

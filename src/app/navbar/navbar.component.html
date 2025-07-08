@@ -1,0 +1,19 @@
+<nav class="navbar">
+    <div class="logo">
+        <img src="/assets/logo.png" alt="EMJY Production Logo">
+    </div>
+    <div class="burger" (click)="isOpen = !isOpen">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+    <ul class="nav-links" [class.open]="isOpen">
+      <li><a routerLink="/accueil" routerLinkActive="active" (click)="isOpen = false">ACCUEIL</a></li>
+      <li><a routerLink="/presentation" routerLinkActive="active" (click)="isOpen = false">PRÉSENTATION</a></li>
+      <li><a routerLink="/services" routerLinkActive="active" (click)="isOpen = false">NOS SERVICES</a></li>
+      <li><a routerLink="/agenda" routerLinkActive="active" (click)="isOpen = false">AGENDA</a></li>
+      <li><a routerLink="/galerie" routerLinkActive="active" (click)="isOpen = false">GALERIE</a></li>
+      <li class="social-icons">
+        <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+      </li>
+    </ul>
+  </nav>

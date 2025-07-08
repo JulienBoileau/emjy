@@ -1,0 +1,63 @@
+<div class="agenda">
+    <div class="agenda-header">
+        <button (click)="prevMonth()" aria-label="Mois précédent">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <h2>{{ monthNames[currentMonthIndex] }} {{ currentYear }}</h2>
+        <button (click)="nextMonth()" aria-label="Mois suivant">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+  
+    <div class="view-toggle">
+      <button [class.active]="viewMode==='calendar'" (click)="viewMode='calendar'">
+        <i class="fa-solid fa-calendar-days"></i> Calendrier
+      </button>
+      <button [class.active]="viewMode==='list'" (click)="viewMode='list'">
+        <i class="fa-solid fa-list"></i> Liste
+      </button>
+    </div>
+  
+    <div *ngIf="viewMode==='calendar'" class="calendar">
+      <div *ngFor="let day of daysInMonth" class="day-cell">
+        <div class="day-number">{{ day }}</div>
+        <div class="spectacles" *ngFor="let s of getSpectaclesForDay(day)" (click)="openModal(s)">
+          <strong>{{ s.title }}</strong>
+          <p>{{ s.info }}</p>
+        </div>
+      </div>
+    </div>
+  
+    <div *ngIf="viewMode==='list'" class="list-view">
+        <div class="list-item" *ngFor="let s of getSpectaclesForMonth()" (click)="openModal(s)">
+          <div class="left">
+            <div class="date">
+              <i class="fa-solid fa-calendar-day"></i>
+              {{ s.date }}
+            </div>
+            <div class="heure">
+              <i class="fa-solid fa-clock"></i>
+              {{ s.heure }}
+            </div>
+          </div>
+          <div class="right">
+            <strong>{{ s.title }}</strong>
+            <p><i class="fa-solid fa-location-dot"></i> {{ s.lieu }}</p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="modal" *ngIf="selectedSpectacle" (click)="closeModal()">
+        <div class="modal-content" (click)="$event.stopPropagation()">
+          <button class="close-btn" (click)="closeModal()">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <h3>{{ selectedSpectacle.title }}</h3>
+          <p><i class="fa-solid fa-calendar-day"></i> {{ selectedSpectacle.date }}</p>
+          <p><i class="fa-solid fa-clock"></i> {{ selectedSpectacle.heure }}</p>
+          <p><i class="fa-solid fa-location-dot"></i> {{ selectedSpectacle.lieu }}</p>
+          <p><i class="fa-solid fa-map"></i> {{ selectedSpectacle.adresse }}</p>
+          <a href="#" class="btn-buy">Acheter billets</a>
+        </div>
+      </div>
+  </div>

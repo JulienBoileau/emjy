@@ -1,0 +1,100 @@
+.services-page {
+    padding: 4rem 8vw;
+    font-family: 'Khand', sans-serif;
+    color: #fff;
+  
+    section {
+      margin-bottom: 4rem;
+  
+      h2 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        text-align: center;
+        position: relative;
+  
+        &::after {
+          content: "";
+          display: block;
+          width: 60px;
+          height: 4px;
+          background: #a44a06;
+          margin: 0.5rem auto 0 auto;
+          border-radius: 2px;
+        }
+      }
+    }
+  
+    .service-list, .tarif-list {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  
+    .service, .tarif {
+      background: rgba(77, 40, 8, 0.632);
+      border-left: 8px solid #a44a06;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 300px;
+      flex: 1;
+  
+      h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #ffe0b3;
+  
+        span {
+          background: #a44a06;
+          color: #fff;
+          padding: 0.2rem 0.6rem;
+          border-radius: 5px;
+          font-size: 1rem;
+          margin-left: 0.5rem;
+        }
+      }
+  
+      p {
+        margin-bottom: 1rem;
+      }
+  
+      ul {
+        padding-left: 1.2rem;
+        li {
+          list-style: disc;
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+  
+    .engagements {
+      ul {
+        max-width: 800px;
+        margin: 0 auto;
+        list-style: none;
+        padding: 0;
+  
+        li {
+          background: rgba(77, 40, 8, 0.632);
+          padding: 1rem 1.5rem;
+          margin-bottom: 1rem;
+          border-radius: 8px;
+          border-left: 6px solid #d9862e;
+  
+          strong {
+            color: #ffe0b3;
+          }
+        }
+      }
+    }
+  
+    @media (max-width: 768px) {
+      padding: 0rem 8vw;
+      
+      .service-list, .tarif-list {
+        flex-direction: column;
+        align-items: center;
+      }
+
+    }
+  }

@@ -13,3 +13,15 @@ html, body {
   font-family: 'Khand', sans-serif;
   overflow-x: hidden;
 }
+
+@media (max-width: 768px) {
+  html, body {
+    background: 
+      linear-gradient(rgba(38, 23, 8, 0.861), rgba(19, 8, 1, 0.9)),
+      url('./assets/background-mobile.jpg') center/cover no-repeat;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+}

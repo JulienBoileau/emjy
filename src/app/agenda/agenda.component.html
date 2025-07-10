@@ -57,7 +57,7 @@
           <p><i class="fa-solid fa-clock"></i> {{ selectedSpectacle.heure }}</p>
           <p><i class="fa-solid fa-location-dot"></i> {{ selectedSpectacle.lieu }}</p>
           <p><i class="fa-solid fa-map"></i> {{ selectedSpectacle.adresse }}</p>
-          <a href="#" class="btn-buy">Acheter billets</a>
+          <a [href]="selectedSpectacle.billetterie" class="btn-buy" target="_blank">Acheter billet(s)</a>
         </div>
       </div>
   </div>

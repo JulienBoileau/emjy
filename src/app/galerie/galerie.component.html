@@ -1,1 +1,26 @@
-<p>galerie works!</p>
+<div class="gallery-page">
+    <h2>NOS ALBUMS</h2>
+    <div class="albums-grid">
+      <div class="album" *ngFor="let album of albums" (click)="selectAlbum(album)">
+        <div class="album-cover">
+          <img [src]="album.cover" [alt]="album.title" loading="lazy">
+        </div>
+        <div class="album-info">
+          <h3>{{ album.title }}</h3>
+          <p>{{ album.date }}</p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="album-photos" *ngIf="selectedAlbum" #photosSection>
+      <h3>{{ selectedAlbum.title }} <span>({{ selectedAlbum.date }})</span></h3>
+      <div class="photos-grid">
+        <div class="photo" *ngFor="let photo of selectedAlbum.photos" (click)="openImage(photo.full)">
+            <img [src]="photo.thumb" alt="Photo miniature" loading="lazy">
+        </div>
+        <div class="lightbox" *ngIf="selectedImage" (click)="closeImage()">
+            <img [src]="selectedImage" alt="Photo en grand">
+        </div>
+      </div>
+    </div>
+  </div>

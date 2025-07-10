@@ -1,137 +1,232 @@
 .team-presentation {
-    padding: 4rem 8vw;
-    color: white;
-    font-family: 'Khand', sans-serif;
-  
-    h1 {
-      font-size: 3rem;
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-  
-    .tags {
-      text-align: center;
-      margin-bottom: 2.5rem;
-  
-      span {
-        display: inline-block;
-        background: #a44a06;
-        color: #fff;
-        padding: 0.4rem 1rem;
-        border-radius: 20px;
-        font-size: 0.9rem;
-        margin: 0 0.4rem;
-        transition: background 0.3s;
-  
-        &:hover {
-          background: #d9862e;
-          cursor: pointer;
-        }
-      }
-    }
-  
-    .team-image {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 3rem;
-  
-      img {
-        width: 90%;
-        height: auto;
-        border-radius: 12px;
-        object-fit: cover;
-        aspect-ratio: 16 / 4; /* pour forcer une image peu haute */
-      }
-    }
-  
-    .team-content {
-      max-width: 1000px;
-      margin: 0 auto;
-      font-size: 1.2rem;
-      line-height: 1.6;
-      background: rgba(58, 27, 2, 0.688);
-      padding: 20px;
-      border-radius: 20px;
-  
-      p {
-        margin-bottom: 2rem;
-  
-        strong {
-          color: #a44a06;
-        }
-  
-        em {
-          font-style: italic;
-          font-weight: bold;
-          color: #d9862e;
-        }
-  
-        .highlight {
-          color: #d9862e;
-          font-weight: 600;
-        }
+  padding: 4rem 8vw;
+  color: white;
+  font-family: 'Khand', sans-serif;
+}
 
-        #conclusion {
-            color: white;
-            font-size: 1.8rem;
-          }
-  
-        &.cta {
-          text-align: center;
-          font-size: 1.6rem;
-          padding: 1.5rem;
-          border-radius: 15px;
-          color: #ffffff;
-  
-          span {
-            font-weight: 700;
-            color: #d9862e;
-          }
-        }
+.team-presentation h1 {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
 
-        .btn {
-          display: inline-block;
-          background: #a44a06;
-          color: white;
-          padding: 0.6rem 1.8rem;
-          font-size: 1.2rem;
-          text-decoration: none;
-          border-radius: 30px;
-    
-          &:hover {
-            cursor: pointer;
-            outline: 2px solid white;
-          }
-        }
-      }
-    }
-  
-    @media (max-width: 768px) {
-      padding: 0rem 8vw;
-      
-      h1 {
-        font-size: 1.6rem;
-      }
-  
-      .team-content {
-        font-size: 1.2rem;
-      }
+.team-presentation .tags {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
 
-      .tags {
-        text-align: center;
-        margin-bottom: 2.5rem;
-    
-        span {
-          display: inline-block;
-          background: #a44a06;
-          color: #fff;
-          padding: 0.4rem 1rem;
-          border-radius: 20px;
-          font-size: 0.8rem;
-          margin: 0 0.3rem;
-          transition: background 0.3s;
+.team-presentation .tags span {
+  display: inline-block;
+  background: #a44a06;
+  color: #fff;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  margin: 0 0.4rem;
+  transition: background 0.3s;
+}
 
-        }
-      }
-    }
+.team-presentation .tags span:hover {
+  background: #d9862e;
+  cursor: pointer;
+}
+
+.team-presentation .team-image {
+  position: relative;
+  width: 90%;
+  height: 300px;
+  margin: 0 auto 3rem;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.team-presentation .half-image {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.team-presentation .half-image.left {
+  background-image: url('/assets/bordeaux.jpg');
+  clip-path: polygon(0 0, 56% 0, 44% 100%, 0% 100%);
+  z-index: 2;
+}
+
+.team-presentation .half-image.right {
+  background-image: url('/assets/paris.jpg');
+  clip-path: polygon(56% 0, 100% 0, 100% 100%, 44% 100%);
+  z-index: 1;
+}
+
+.team-presentation .half-image.left::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -2px;
+  width: 4px;
+  height: 100%;
+  background: #a44a06;
+  transform: rotate(-15deg);
+}
+
+.team-presentation .reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.team-presentation .reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.team-presentation p.cta {
+  background: rgba(164, 74, 6, 0.7);
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  border: 2px solid #a44a06;
+  text-align: center;
+  font-size: 1.6rem;
+  padding: 1rem;
+  border-radius: 15px;
+  margin-top: 3rem;
+}
+
+.team-presentation .interventions {
+  text-align: center;
+  margin: 4rem 0;
+}
+
+.team-presentation .interventions h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #d9862e;
+}
+
+.team-presentation .interventions .cities {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.team-presentation .interventions .city {
+  max-width: 250px;
+}
+
+.team-presentation .interventions .city img {
+  width: 160px;
+  height: auto;
+}
+
+.team-presentation .interventions .city p {
+  font-size: 1.2rem;
+  color: white;
+  line-height: 1.4;
+}
+
+.team-presentation .interventions .city strong {
+  font-size: 1.6rem;
+}
+
+.team-presentation #conclusion {
+  color: white;
+  font-size: 1.6rem;
+}
+
+.team-presentation .cta span {
+  font-weight: 700;
+  color: #d9862e;
+}
+
+.team-presentation .btn {
+  display: inline-block;
+  background: white;
+  color: #a44a06;
+  padding: 0.6rem 1.8rem;
+  font-size: 1.2rem;
+  text-decoration: none;
+  border-radius: 30px;
+}
+
+.team-presentation .btn:hover {
+  cursor: pointer;
+  background: #e19f59;
+}
+
+.team-presentation .team-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  background: rgba(58, 27, 2, 0.688);
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.team-presentation .team-content p {
+  margin-bottom: 2rem;
+}
+
+.team-presentation .team-content p strong {
+  color: #a44a06;
+}
+
+.team-presentation .team-content p em {
+  font-style: italic;
+  font-weight: bold;
+  color: #d9862e;
+}
+
+.team-presentation .team-content p .highlight {
+  color: #d9862e;
+  font-weight: 600;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  .team-presentation {
+    padding: 0rem 8vw;
   }
+
+  .team-presentation h1 {
+    font-size: 1.6rem;
+  }
+
+  .team-presentation .interventions h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .team-presentation .interventions .cities {
+    gap: 1.5rem;
+  }
+
+  .team-presentation .interventions .city p {
+    line-height: 1;
+  }
+
+  .team-presentation .team-content {
+    font-size: 1.2rem;
+  }
+
+  .team-presentation .team-image {
+    max-height: 150px;
+    width: 100%;
+  }
+
+  .team-presentation .tags span {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.7rem;
+    margin: 0 0.2rem;
+  }
+
+  .team-presentation p.cta {
+    font-size: 1rem;
+    padding: 0.8rem;
+    margin-top: 2rem;
+  }
+}

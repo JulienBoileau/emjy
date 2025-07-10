@@ -8,6 +8,7 @@ interface Spectacle {
   lieu: string;
   adresse: string;
   heure: string;
+  billetterie: string;
 }
 
 @Component({
@@ -31,9 +32,9 @@ export class AgendaComponent {
   selectedSpectacle: Spectacle | null = null;
 
   spectacles: Spectacle[] = [
-    { date: `${this.currentYear}-${this.pad(this.currentMonthIndex+1)}-10`, title: 'Comedy Night', info: 'Théâtre Bordeaux', lieu: 'Théâtre Bordeaux', adresse: '12 rue des Remparts, Bordeaux', heure: '20h' },
-    { date: `${this.currentYear}-${this.pad(this.currentMonthIndex+1)}-15`, title: 'Stand-up Show', info: 'Salle Le Pin', lieu: 'Salle Le Pin', adresse: '45 avenue du Pin, Bordeaux', heure: '21h' },
-    { date: `${this.currentYear}-${this.pad(this.currentMonthIndex+1)}-22`, title: 'One Man Show', info: 'Casino Bordeaux', lieu: 'Casino Bordeaux', adresse: '3 boulevard du Casino, Bordeaux', heure: '19h' }
+    { date: `${this.currentYear}-${this.pad(this.currentMonthIndex+1)}-19`, title: 'Comedy Club', info: 'L\'Empire Bordeaux', lieu: 'L\'Empire Bordeaux', adresse: '14 Rue de la Devise, Bordeaux', heure: '19h15 & 21h15', billetterie: 'https://billetterie.festik.net/l-empire-comedy-club/product/empire-comedy-club-n17/?draftkey=ae6e08de06281d7e0b6d7fe3f5eb0069' },
+    { date: '2025-10-23', title: 'Comedy Club', info: 'Rimshot Clermont-Ferrand', lieu: 'Rimshot Clermont-Ferrand', adresse: '10 rue des Frères Lumière, Clermont-Ferrand', heure: '19h00 & 21h00', billetterie: '#' },
+
   ];
 
   ngOnInit() {

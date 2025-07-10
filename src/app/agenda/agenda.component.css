@@ -80,6 +80,8 @@
           cursor: pointer;
   
           strong { color: #a44a06; }
+
+          p { line-height: 20px; }
         }
 
         &:hover {
@@ -164,9 +166,10 @@
         z-index: 1000;
       
         .modal-content {
-          background: rgba(44, 18, 4, 0.95);
+          background: rgba(47, 42, 40, 0.95);
           padding: 2rem;
           border-radius: 20px;
+          border: 1px solid #d9862e;
           max-width: 400px;
           width: 90%;
           text-align: center;
@@ -226,6 +229,18 @@
       
   
     @media (max-width: 768px) {
+
+      .list-view {
+        margin: auto;
+        width: 85%;
+      }
+
       .calendar { grid-template-columns: repeat(3, 1fr); }
+
+      .spectacles p, .spectacles strong {
+        line-height: 15px;
+        padding: 0rem;
+        padding-top: 0rem;
+      }
     }
   }

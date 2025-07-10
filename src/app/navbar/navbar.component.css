@@ -43,7 +43,7 @@
     justify-content: center;
     flex: 1;
     gap: 2.5rem;
-
+  
     li a {
       text-decoration: none;
       color: #fff;
@@ -52,15 +52,43 @@
       cursor: pointer;
       padding-inline: 0.5rem;
       font-size: clamp(0.9rem, 2vw, 1.2rem);
-
+      position: relative; /* pour ::after */
+  
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 50%;
+        width: 0%;
+        height: 3px;
+        background: #a44a06;
+        border-radius: 2px;
+        transform: translateX(-50%) scaleX(0);
+        transform-origin: center;
+        transition: transform 0.3s, width 0.3s;
+      }
+  
       &:hover,
       &.active {
-        color: #762803;
+        color: #a44a06;
+      }
+  
+      &:hover::after {
+        width: 100%;
+        transform: translateX(-50%) scaleX(1);
+      }
+  
+      &.active::after {
+        width: 33%;
+        transform: translateX(-50%) scaleX(1);
       }
     }
   }
 
+
   .social-icons {
+    position: absolute;
+    right: 2rem;
     display: flex;
 
     a {
@@ -70,7 +98,7 @@
       transition: color 0.3s;
 
       &:hover {
-        color: #762803;
+        color: #a44a06;
       }
     }
   }
@@ -133,7 +161,13 @@
       }
 
       .social-icons {
-        margin-top: 1rem;
+        position: absolute;
+        bottom: 2rem;
+        left: 49%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 0; 
       }
     }
   }

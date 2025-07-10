@@ -1,11 +1,25 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 
 @Component({
   selector: 'app-services',
-  imports: [],
   templateUrl: './services.component.html',
-  styleUrl: './services.component.css'
+  styleUrls: ['./services.component.css']
 })
-export class ServicesComponent {
+export class ServicesComponent implements AfterViewInit {
+  
+  ngAfterViewInit() {
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
 
+    reveals.forEach(reveal => {
+      observer.observe(reveal);
+    });
+  }
 }

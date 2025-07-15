@@ -1,0 +1,57 @@
+<h2 class="contact-title">Contactez-nous</h2>
+<div class="contact-container">
+  <form action="https://formsubmit.co/contact@emjyproduction.com" method="POST" class="contact-form" onsubmit="return validateForm(event)">
+    <div class="form-group">
+      <label for="societe">Société</label>
+      <input type="text" id="societe" name="Société" required>
+    </div>
+    <div class="form-group">
+      <label for="nom">Nom et prénom</label>
+      <input type="text" id="nom" name="Nom et prénom" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Adresse email</label>
+      <input type="email" id="email" name="Email" required>
+    </div>
+    <div class="form-group">
+      <label for="service">Service souhaité</label>
+      <select id="service" name="Service" required>
+        <option value="">-- Sélectionnez un service --</option>
+        <option>Captation vidéo</option>
+        <option>Montage vidéo</option>
+        <option>Captation + montage vidéo</option>
+        <option>Organisation de Comedy Club</option>
+        <option>Cadrage en backstage</option>
+        <option>Captation avec drone</option>
+      </select>
+    </div>
+    <div class="form-group checkbox">
+      <input type="checkbox" id="consent" name="Consentement" value="Accepté" required>
+      <label for="consent">J'accepte que mes données soient utilisées pour être contacté.</label>
+    </div>
+    <div class="form-group error-message" id="errorMessage" style="display:none; color:#f88; margin-bottom:1rem; text-align:center;">
+      Veuillez remplir tous les champs et accepter la case de consentement.
+    </div>
+    <button type="submit" class="submit-btn">Envoyer <i class="fa-solid fa-paper-plane"></i></button>
+  </form>
+</div>
+
+<script>
+function validateForm(event) {
+  const societe = document.getElementById('societe').value.trim();
+  const nom = document.getElementById('nom').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const service = document.getElementById('service').value.trim();
+  const consent = document.getElementById('consent').checked;
+  const errorMessage = document.getElementById('errorMessage');
+
+  if (!societe || !nom || !email || !service || !consent) {
+    event.preventDefault();
+    errorMessage.style.display = 'block';
+    return false;
+  } else {
+    errorMessage.style.display = 'none';
+    return true;
+  }
+}
+</script>

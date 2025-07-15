@@ -4,6 +4,7 @@ import { ServicesComponent } from './services/services.component';
 import { AgendaComponent } from './agenda/agenda.component';
 import { GalerieComponent } from './galerie/galerie.component';
 import { PresentationComponent } from './presentation/presentation.component';
+import { ContactComponent } from './contact/contact.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/accueil', pathMatch: 'full' },
@@ -12,6 +13,7 @@ export const routes: Routes = [
     { path: 'services', component: ServicesComponent },
     { path: 'agenda', component: AgendaComponent },
     { path: 'galerie', component: GalerieComponent },
+    { path: 'contact', component: ContactComponent },
   ];
 
 

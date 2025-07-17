@@ -56,8 +56,6 @@ export class GalerieComponent {
       cover: 'assets/affiche_juillet.jpeg',
       photos: [
         { thumb: 'assets/background.png', full: 'assets/background.png' },
-        { thumb: 'assets/background.png', full: 'assets/background.png' },
-        { thumb: 'assets/background.png', full: 'assets/background.png' }
       ]
     },
     // ajoute autant d’albums que tu veux
@@ -67,21 +65,34 @@ export class GalerieComponent {
 
   selectAlbum(album: any) {
     this.selectedAlbum = album;
-    setTimeout(() => {
-      this.photosSection?.nativeElement.scrollIntoView({ behavior: 'smooth' });
-    }, 0);
+    this.currentIndex = 0;
+    this.currentPhoto = album.photos[0];
   }
 
   selectedImage: string | null = null;
 
-openImage(image: string) {
-  this.selectedImage = image;
+currentIndex = 0;
+currentPhoto: any = null;
+
+
+nextPhoto() {
+  if (!this.selectedAlbum) return;
+  this.currentIndex = (this.currentIndex + 1) % this.selectedAlbum.photos.length;
+  this.currentPhoto = this.selectedAlbum.photos[this.currentIndex];
 }
 
-closeImage(event?: Event) {
-  if (event) {
-    event.stopPropagation();
-  }
+prevPhoto() {
+  if (!this.selectedAlbum) return;
+  this.currentIndex =
+    (this.currentIndex - 1 + this.selectedAlbum.photos.length) % this.selectedAlbum.photos.length;
+  this.currentPhoto = this.selectedAlbum.photos[this.currentIndex];
+}
+
+openImage(full: string) {
+  this.selectedImage = full;
+}
+
+closeImage() {
   this.selectedImage = null;
 }
 

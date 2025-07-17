@@ -27,7 +27,17 @@
     </div>
     <div class="form-group checkbox">
       <input type="checkbox" id="consent" name="Consentement" value="Accepté" required>
-      <label for="consent">J'accepte que mes données soient utilisées pour être contacté.</label>
+      <label for="consent">J’autorise l’utilisation de mes données afin d’être contacté(e) dans le cadre de ma demande</label>
+      <span class="tooltip-wrapper">
+        <span class="tooltip-icon">
+          <i class="fa-solid fa-question"></i>
+        </span>
+        <span class="tooltip-text">
+            Vos données personnelles sont collectées par <span class="emjy">EMJY Production</span> uniquement dans le but de traiter votre demande et de vous recontacter dans le cadre des services proposés.
+            Elles ne seront en aucun cas transmises ou revendues à des tiers.
+            Vous disposez d’un droit d’accès, de rectification et de suppression de vos informations à tout moment en nous contactant.
+        </span>
+      </span>
     </div>
     <div class="form-group error-message" id="errorMessage" style="display:none; color:#f88; margin-bottom:1rem; text-align:center;">
       Veuillez remplir tous les champs et accepter la case de consentement.
@@ -36,6 +46,31 @@
   </form>
 </div>
 
+<div class="contact-cards">
+    <div class="contact-card">
+      <div class="icon-circle">
+        <i class="fa-solid fa-phone"></i>
+      </div>
+      <h4>Téléphone 1</h4>
+      <p><a href="tel:+33618222458">06 18 22 24 58</a></p>
+    </div>
+  
+    <div class="contact-card">
+      <div class="icon-circle">
+        <i class="fa-solid fa-phone"></i>
+      </div>
+      <h4>Téléphone 2</h4>
+      <p><a href="tel:+33627117782">06 27 11 77 82</a></p>
+    </div>
+  
+    <div class="contact-card">
+      <div class="icon-circle">
+        <i class="fa-solid fa-envelope"></i>
+      </div>
+      <h4>Email</h4>
+      <p><a href="mailto:contact@emjyproduction.com">contact&#64;emjyproduction.com</a></p>
+    </div>
+  </div>
 <script>
 function validateForm(event) {
   const societe = document.getElementById('societe').value.trim();

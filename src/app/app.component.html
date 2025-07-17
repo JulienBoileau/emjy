@@ -1,2 +1,55 @@
 <app-navbar></app-navbar>
 <router-outlet></router-outlet>
+<footer class="site-footer">
+  <div class="footer-links">
+    <a (click)="openModal('mentions')">Mentions légales</a> |
+    <a (click)="openModal('confidentialite')">Politique de confidentialité</a>
+  </div>
+  <div class="footer-copy">
+    © 2025 Emjy Production. Tous droits réservés. Site développé par Kodium.
+  </div>
+
+  <!-- Modale : Mentions légales -->
+  <div class="legal-modal" *ngIf="showModal === 'mentions'" (click)="closeModal()">
+    <div class="legal-content" (click)="$event.stopPropagation()">
+      <h2>Mentions légales</h2>
+      <div class="modal-body">
+        <p><strong>Propriétaire du site :</strong><br>
+          EMJY PRODUCTION<br>
+          Adresse : 20 avenue du 15 août 1944 19360 Malemort, France<br>
+          SIRET : 94371079800019<br>
+          Email : <a href="mailto:contact@emjyproduction.com">contact&#64;emjyproduction.com</a><br>
+          Téléphone : 06 18 22 24 58
+        </p>
+        <p><strong>Hébergement :</strong><br>
+          HOSTINGER INTERNATIONAL LTD<br>
+          Adresse : 61 Lordou Vironos Street, 6023 Larnaca, Chypre<br>
+          Contact : https://www.hostinger.fr/contact
+        </p>
+        <p><strong>Responsabilité :</strong><br>
+          Emjy Production s’efforce d’assurer l’exactitude des informations diffusées. Toutefois, elle ne peut garantir l’absence d’erreurs ou d’omissions. En conséquence, l'utilisateur reconnaît utiliser ces informations sous sa responsabilité exclusive.
+        </p>
+        <p><strong>Propriété intellectuelle :</strong><br>
+          Tous les contenus présents sur le site (textes, images, vidéos, logos, etc.) sont la propriété exclusive d’Emjy Production ou de ses partenaires. Toute reproduction, distribution ou utilisation sans autorisation est strictement interdite.
+        </p>
+        <p><strong>Développement :</strong><br>
+          SASU Kodium - Julien Boileau
+        </p>
+      </div>
+      <button class="close-btn" (click)="closeModal()">Fermer</button>
+    </div>
+  </div>
+
+  <!-- Modale : Politique de confidentialité -->
+  <div class="legal-modal" *ngIf="showModal === 'confidentialite'" (click)="closeModal()">
+    <div class="legal-content" (click)="$event.stopPropagation()">
+      <h2>Politique de confidentialité</h2>
+      <div class="modal-body">
+        <p>Emjy Production s'engage à protéger vos données personnelles. Les informations collectées via nos formulaires sont utilisées uniquement pour traiter votre demande et vous recontacter dans le cadre de nos prestations.</p>
+        <p>Conformément au RGPD, vous disposez d’un droit d’accès, de rectification, d’opposition et de suppression de vos données. Vous pouvez exercer ces droits à tout moment en nous contactant à <a href="mailto:contact@emjyproduction.com">contact&#64;emjyproduction.com</a>.</p>
+        <p>Aucune donnée personnelle n’est cédée à des tiers. Les données sont conservées de manière sécurisée pour une durée n’excédant pas celle nécessaire aux finalités du traitement.</p>
+      </div>
+      <button class="close-btn" (click)="closeModal()">Fermer</button>
+    </div>
+  </div>
+</footer>

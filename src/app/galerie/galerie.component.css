@@ -124,9 +124,125 @@
         margin-top: -10px;
       }
 
+      .album {
+    
+        .album-cover img {
+          height: 100px;
+          opacity: 60%;
+          filter: grayscale(50%);
+        }
+    
+        .album-info {
+          padding: 0.7rem;
+    
+          h3 {
+            margin: 0.3rem 0;
+          }
+    
+          p {
+            margin: 0;
+          }
+        }
+      }
+
       .album-photos h3 {
         font-size: 1.6rem;
       }
+
+      .carousel {
+        min-height: 320px;
+        gap: 0;
+      }
+    
+      .carousel-image {
+        height: 320px;
+      }
+    
+      .carousel-image img {
+        max-width: 90%;
+        max-height: 300px;
+      }
+    
+      /* flèches à l'intérieur */
+      .carousel-btn {
+        position: absolute;
+        top: 47%;
+        transform: translateY(-50%);
+        background: rgba(77, 40, 8, 0.85);
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
+    
+      .carousel-btn.prev {
+        left: 6%;
+      }
+    
+      .carousel-btn.next {
+        right: 6%;
+      }
+    
+      .photo-count {
+        margin-top: 0.8rem;
+        font-size: 0.95rem;
+      }
     }
+  }
+
+  .carousel-wrapper {
+    position: relative;
+    margin-top: 3rem;
+    text-align: center;
+  }
+  
+  .carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    min-height: 480px;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  
+  .carousel-image {
+    width: 100%;
+    max-width: 750px;
+    height: 480px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .carousel-image img {
+    max-width: 80%;
+    max-height: 450px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 3px solid #a44a06;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  
+  .carousel-btn {
+    background: rgba(77, 40, 8, 0.8);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .carousel-btn:hover {
+    background: #d9862e;
+  }
+  
+  .photo-count {
+    margin-top: 1rem;
+    color: #ffe0b3;
+    font-size: 1rem;
   }
 

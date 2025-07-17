@@ -63,6 +63,73 @@
     width: auto;
     margin-right: 0.5rem;
   }
+
+  .contact-form .form-group.checkbox label {
+    font-size: 0.9rem;
+    margin-top: 7px;
+  }
+
+  .emjy {
+    color: #d9862e;
+  }
+
+  .tooltip-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-left: 0.5rem;
+  }
+  
+  .tooltip-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background: #a44a06;
+    color: #fff;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 0.8rem;
+    transition: background 0.3s;
+  }
+  
+  .tooltip-icon:hover {
+    background: #d9862e;
+  }
+  
+  .tooltip-text {
+    visibility: hidden;
+    opacity: 0;
+    width: 260px;
+    background: rgba(0, 0, 0, 0.89);
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 0.6rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 140%;
+    transition: opacity 0.3s;
+    z-index: 1000;
+  }
+  
+  /* petite flèche */
+  .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: rgba(0,0,0,0.85) transparent transparent transparent;
+  }
+  
+  .tooltip-wrapper:hover .tooltip-text,
+  .tooltip-icon:hover + .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
   
   .submit-btn {
     display: block;
@@ -80,4 +147,101 @@
   
   .submit-btn:hover {
     background: #d9862e;
+  }
+
+  .contact-cards {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 3rem auto;
+    flex-wrap: wrap;
+    font-family: 'Khand', sans-serif;
+  }
+  
+  .contact-card {
+    background: rgba(77, 40, 8, 0.85);
+    color: #fff;
+    padding: 2rem 1.5rem;
+    border-radius: 15px;
+    text-align: center;
+    width: 250px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  }
+  
+  .icon-circle {
+    background: #a44a06;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem auto;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: #fff;
+  }
+  
+  .contact-card h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    color: #ffe0b3;
+  }
+  
+  .contact-card p {
+    margin: 0;
+  }
+  
+  .contact-card a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  
+  .contact-card a:hover {
+    color: #d9862e;
+  }
+
+  @media (max-width: 768px) {
+
+    .contact-container {
+      width: 75%;
+      margin: 0 auto 1.6rem auto;
+      padding: 1.6rem;
+    }
+
+    .contact-form .form-group {
+      margin-bottom: 0.8rem;
+    }
+    
+    .contact-form label {
+      margin-bottom: 0.3rem;
+      font-size: 1rem;
+    }
+
+    .contact-form .form-group.checkbox label {
+      font-size: 0.7rem;
+    }
+
+    .submit-btn {
+      margin: 0.8rem auto 0 auto;
+      padding: 0.6rem 1.5rem;
+      font-size: 1rem;
+    }
+
+    .contact-cards {
+      gap: 1.6rem;
+      margin: 2rem auto;
+    }
+    
+    .contact-card {
+      padding: 1.2rem 1rem;
+      width: 70%;
+    }
   }

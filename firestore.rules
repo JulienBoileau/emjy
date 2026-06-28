@@ -1,0 +1,46 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAllowedAdmin() {
+      return request.auth != null
+        && (request.auth.token.email == 'julien.boileau@kodium.fr'
+          || request.auth.token.email == 'contact@emjyproduction.com');
+    }
+
+    match /siteContent/{docId} {
+      allow read: if true;
+      allow write: if isAllowedAdmin();
+    }
+
+    match /agendaEvents/{eventId} {
+      allow read: if true;
+      allow write: if isAllowedAdmin();
+    }
+
+    match /albums/{albumId} {
+      allow read: if true;
+      allow write: if isAllowedAdmin();
+
+      match /photos/{photoId} {
+        allow read: if true;
+        allow write: if isAllowedAdmin();
+      }
+    }
+
+    match /newsletter/{docId} {
+      // Tout le monde peut s'inscrire, seuls les admins peuvent lire/supprimer
+      allow create: if true;
+      allow read, update, delete: if isAllowedAdmin();
+    }
+
+    match /contactRequests/{docId} {
+      // Tout le monde peut envoyer une demande de contact, seuls les admins peuvent lire/supprimer
+      allow create: if true;
+      allow read, update, delete: if isAllowedAdmin();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

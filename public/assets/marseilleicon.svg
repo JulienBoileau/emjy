@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Illustration de Marseille">
+  <defs>
+    <linearGradient id="marsBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d9efff"/>
+      <stop offset="100%" stop-color="#66a9d9"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="240" rx="36" fill="url(#marsBg)"/>
+  <path d="M0 160h240v80H0z" fill="#0f4e7a" opacity="0.88"/>
+  <path d="M48 158c22-38 45-60 72-68 25 10 50 32 72 68H48z" fill="#fff9f0" opacity="0.92"/>
+  <path d="M118 84l10 12h-6v26h-8V96h-6l10-12z" fill="#0f4e7a"/>
+  <rect x="102" y="122" width="32" height="36" rx="8" fill="#fff9f0"/>
+  <path d="M28 176c24-14 55-20 92-20s68 6 92 20" stroke="#fff9f0" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.75"/>
+  <path d="M34 192c28 6 57 9 86 9s58-3 86-9" stroke="#7fd1ff" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.7"/>
+  <circle cx="184" cy="52" r="18" fill="#fff9f0" opacity="0.8"/>
+</svg>

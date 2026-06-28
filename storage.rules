@@ -1,0 +1,24 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function isAllowedAdmin() {
+      return request.auth != null
+        && (request.auth.token.email == 'julien.boileau@kodium.fr'
+          || request.auth.token.email == 'contact@emjyproduction.com');
+    }
+
+    match /homepage/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAllowedAdmin();
+    }
+
+    match /albums/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAllowedAdmin();
+    }
+
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

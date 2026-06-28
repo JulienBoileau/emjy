@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Illustration de Lyon">
+  <defs>
+    <linearGradient id="lyonBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffe3bf"/>
+      <stop offset="100%" stop-color="#f4a45e"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="240" rx="36" fill="url(#lyonBg)"/>
+  <circle cx="178" cy="58" r="20" fill="#fff5e8" opacity="0.8"/>
+  <path d="M56 168c20-42 40-68 60-78 20 10 40 36 60 78H56z" fill="#7c3913" opacity="0.18"/>
+  <path d="M74 160h92" stroke="#fff6ea" stroke-width="8" stroke-linecap="round" opacity="0.8"/>
+  <path d="M120 72l14 18h-8v34h-12V90h-8l14-18z" fill="#6a2c08"/>
+  <rect x="102" y="124" width="36" height="44" rx="8" fill="#8e3f0d"/>
+  <rect x="114" y="136" width="12" height="32" rx="4" fill="#ffd9b0" opacity="0.9"/>
+  <path d="M44 184c20-16 44-24 76-24s56 8 76 24" stroke="#6a2c08" stroke-width="10" stroke-linecap="round" fill="none" opacity="0.75"/>
+  <path d="M58 188h124" stroke="#fff6ea" stroke-width="6" stroke-linecap="round" opacity="0.6"/>
+</svg>

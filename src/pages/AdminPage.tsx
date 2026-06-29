@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useEffect, useMemo, useRef, useState } from 'react';
 import type { User } from 'firebase/auth';
 import {
+  changeAdminPassword,
   isAllowedEmail,
   signInAdmin,
   signOutAdmin,
@@ -61,12 +62,17 @@ export function AdminPage() {
   const [activeTab, setActiveTab] = useState<Tab>('accueil');
   const [loading, setLoading] = useState(false);
   const [authLoading, setAuthLoading] = useState(false);
+  const [passwordLoading, setPasswordLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const [toast, setToast] = useState('');
 
   const [authEmail, setAuthEmail] = useState('');
   const [authPassword, setAuthPassword] = useState('');
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [nextPassword, setNextPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const [homepage, setHomepage] = useState<HomeHeroContent>(fallbackHome);
   const [heroImageAlt, setHeroImageAlt] = useState(fallbackHome.heroImageAlt);
@@ -218,6 +224,20 @@ export function AdminPage() {
     return 'Date indisponible';
   }
 
+  function formatDateShort(value: unknown): string {
+    if (!value) return '--/--';
+
+    if (value instanceof Date) {
+      return new Intl.DateTimeFormat('fr-FR', { day: '2-digit', month: '2-digit' }).format(value);
+    }
+
+    if (typeof value === 'object' && value !== null && 'toDate' in value && typeof (value as { toDate: () => Date }).toDate === 'function') {
+      return new Intl.DateTimeFormat('fr-FR', { day: '2-digit', month: '2-digit' }).format((value as { toDate: () => Date }).toDate());
+    }
+
+    return '--/--';
+  }
+
   async function copyToClipboard(value: string) {
     try {
       await navigator.clipboard.writeText(value);
@@ -270,6 +290,21 @@ export function AdminPage() {
   function resetAlerts() {
     setError('');
     setMessage('');
+  }
+
+  function openPasswordModal() {
+    resetAlerts();
+    setCurrentPassword('');
+    setNextPassword('');
+    setConfirmPassword('');
+    setShowPasswordModal(true);
+  }
+
+  function closePasswordModal() {
+    setShowPasswordModal(false);
+    setCurrentPassword('');
+    setNextPassword('');
+    setConfirmPassword('');
   }
 
   function renderDismissibleAlert(
@@ -334,6 +369,43 @@ export function AdminPage() {
       setError(toError(err));
     } finally {
       setAuthLoading(false);
+    }
+  }
+
+  async function handlePasswordChange(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    if (!currentPassword || !nextPassword || !confirmPassword) {
+      setError('Renseigne tous les champs du changement de mot de passe.');
+      return;
+    }
+
+    if (nextPassword.length < 6) {
+      setError('Le nouveau mot de passe doit contenir au moins 6 caractères.');
+      return;
+    }
+
+    if (nextPassword !== confirmPassword) {
+      setError('La confirmation du nouveau mot de passe ne correspond pas.');
+      return;
+    }
+
+    if (currentPassword === nextPassword) {
+      setError('Le nouveau mot de passe doit être différent de l\'ancien.');
+      return;
+    }
+
+    setPasswordLoading(true);
+    resetAlerts();
+    try {
+      await changeAdminPassword(currentPassword, nextPassword);
+      closePasswordModal();
+      setMessage('Mot de passe mis à jour avec succès.');
+      setToast('Mot de passe admin mis à jour.');
+    } catch (err) {
+      setError(toError(err));
+    } finally {
+      setPasswordLoading(false);
     }
   }
 
@@ -586,17 +658,26 @@ export function AdminPage() {
         <div>
           <p className="eyebrow">EMJY CONTROL ROOM</p>
           <h1>Administration du contenu</h1>
-          <p className="subtitle">Connecté en tant que {user.email}</p>
+          <p className="subtitle">Connecté en tant que <span className="admin-email-badge">{user.email}</span></p>
         </div>
-        <button type="button" className="ghost" onClick={() => signOutAdmin()}>Se déconnecter</button>
+        <div className="admin-header-actions">
+          <button type="button" className="ghost password-trigger-btn" onClick={openPasswordModal}>
+            <i className="fa-solid fa-key" aria-hidden="true" />
+            Changer mot de passe
+          </button>
+          <button type="button" className="ghost signout-trigger-btn" onClick={() => signOutAdmin()}>
+            <i className="fa-solid fa-right-from-bracket" aria-hidden="true" />
+            Se déconnecter
+          </button>
+        </div>
       </header>
 
       <nav className="tabs">
-        <button type="button" className={activeTab === 'accueil' ? 'active' : ''} onClick={() => setActiveTab('accueil')}>Accueil</button>
-        <button type="button" className={activeTab === 'agenda' ? 'active' : ''} onClick={() => setActiveTab('agenda')}>Agenda</button>
-        <button type="button" className={activeTab === 'albums' ? 'active' : ''} onClick={() => setActiveTab('albums')}>Albums</button>
-        <button type="button" className={activeTab === 'contacts' ? 'active' : ''} onClick={() => setActiveTab('contacts')}>Contacts</button>
-        <button type="button" className={activeTab === 'newsletter' ? 'active' : ''} onClick={() => setActiveTab('newsletter')}>Newsletter</button>
+        <button type="button" className={activeTab === 'accueil' ? 'active' : ''} onClick={() => setActiveTab('accueil')}><i className="fa-solid fa-house" aria-hidden="true" /> Accueil</button>
+        <button type="button" className={activeTab === 'agenda' ? 'active' : ''} onClick={() => setActiveTab('agenda')}><i className="fa-regular fa-calendar-days" aria-hidden="true" /> Agenda</button>
+        <button type="button" className={activeTab === 'albums' ? 'active' : ''} onClick={() => setActiveTab('albums')}><i className="fa-regular fa-images" aria-hidden="true" /> Albums</button>
+        <button type="button" className={activeTab === 'contacts' ? 'active' : ''} onClick={() => setActiveTab('contacts')}><i className="fa-regular fa-address-book" aria-hidden="true" /> Contacts</button>
+        <button type="button" className={activeTab === 'newsletter' ? 'active' : ''} onClick={() => setActiveTab('newsletter')}><i className="fa-regular fa-envelope" aria-hidden="true" /> Newsletter</button>
       </nav>
 
       {message && renderDismissibleAlert(message, 'ok', () => setMessage(''))}
@@ -833,7 +914,6 @@ export function AdminPage() {
               <article key={item.id} className="inbox-card contact-card">
                 <header>
                   <h3>{item.societe || 'Société non renseignée'}</h3>
-                  <span>{formatDateTime(item.createdAt)}</span>
                 </header>
                 <p className="inbox-company">{item.nom || 'Nom indisponible'}</p>
                 <div className="inbox-tags">
@@ -845,8 +925,9 @@ export function AdminPage() {
                 </footer>
                 <div className="contact-card-actions">
                   <button type="button" className="ghost view-contact-btn" onClick={() => openContactDetails(item)} aria-label="Voir les détails de la demande">
-                    <i className="fa-regular fa-eye" aria-hidden="true" />
+                    Voir
                   </button>
+                  <span className="contact-card-date">{formatDateShort(item.createdAt)}</span>
                 </div>
               </article>
             ))}
@@ -896,7 +977,7 @@ export function AdminPage() {
               <article key={item.id} className="inbox-card newsletter-card">
                 <header>
                   <h3>{item.prenom} {item.nom}</h3>
-                  <span>{formatDateTime(item.createdAt)}</span>
+                  <span>{formatDateShort(item.createdAt)}</span>
                 </header>
                 <div className="inbox-tags">
                   <span>{item.departement || 'Département non renseigné'}</span>
@@ -949,6 +1030,37 @@ export function AdminPage() {
                 <i className="fa-regular fa-copy" /> Copier l'email
               </button>
             </footer>
+          </section>
+        </div>
+      )}
+
+      {showPasswordModal && (
+        <div className="modal-bg" onClick={closePasswordModal}>
+          <section className="modal-card password-modal" onClick={(event) => event.stopPropagation()}>
+            <header className="modal-head">
+              <h3>Changer le mot de passe</h3>
+              <button type="button" className="ghost" onClick={closePasswordModal}>Fermer</button>
+            </header>
+
+            <form className="form-grid" onSubmit={handlePasswordChange}>
+              <label className="full">
+                Mot de passe actuel
+                <input type="password" value={currentPassword} onChange={(event) => setCurrentPassword(event.target.value)} required />
+              </label>
+              <label>
+                Nouveau mot de passe
+                <input type="password" value={nextPassword} onChange={(event) => setNextPassword(event.target.value)} minLength={6} required />
+              </label>
+              <label>
+                Confirmation
+                <input type="password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} minLength={6} required />
+              </label>
+              <p className="password-hint full">Sécurité: réauthentification obligatoire, minimum 6 caractères, confirmation identique.</p>
+              <div className="modal-footer password-modal-footer full">
+                <button type="button" className="ghost" onClick={closePasswordModal} disabled={passwordLoading}>Annuler</button>
+                <button type="submit" className="primary" disabled={passwordLoading}>{passwordLoading ? 'Mise à jour...' : 'Mettre à jour'}</button>
+              </div>
+            </form>
           </section>
         </div>
       )}

@@ -2,6 +2,7 @@ import { Suspense, lazy, useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { SiteFooter } from './components/SiteFooter';
+import { applySeoForPath } from './lib/seo';
 
 const HomePage = lazy(() => import('./pages/HomePage').then((module) => ({ default: module.HomePage })));
 const PresentationPage = lazy(() => import('./pages/PresentationPage').then((module) => ({ default: module.PresentationPage })));
@@ -14,14 +15,19 @@ const NewsletterPage = lazy(() => import('./pages/NewsletterPage').then((module)
 
 export function App() {
   const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith('/admin');
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
+  useEffect(() => {
+    applySeoForPath(location.pathname);
+  }, [location.pathname]);
+
   return (
     <div className="app-shell">
-      <Navbar />
+      {!isAdminRoute && <Navbar />}
       <main className="page-shell" key={location.pathname}>
         <Suspense
           fallback={
@@ -44,7 +50,7 @@ export function App() {
           </Routes>
         </Suspense>
       </main>
-      <SiteFooter />
+      {!isAdminRoute && <SiteFooter />}
     </div>
   );
 }

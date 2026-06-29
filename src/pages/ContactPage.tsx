@@ -61,6 +61,7 @@ export function ContactPage() {
 
   return (
     <section className="contact-page">
+      <h1 className="sr-only">Contact Emjy Production</h1>
       <div className="contact-intro reveal">
         <div className="contact-title-row">
           <h2 className="contact-title">Contactez-nous</h2>

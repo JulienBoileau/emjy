@@ -87,6 +87,7 @@ export function AgendaPage() {
 
   return (
     <section className="agenda">
+      <h1 className="sr-only">Agenda des spectacles Emjy Production</h1>
       <div className="agenda-header">
         <button type="button" onClick={prevMonth} aria-label="Mois precedent"><i className="fa-solid fa-chevron-left" /></button>
         <h2>{monthNames[currentMonthIndex]} {currentYear}</h2>

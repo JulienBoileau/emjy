@@ -81,6 +81,7 @@ export function NewsletterPage() {
 
   return (
     <section className="newsletter-page">
+      <h1 className="sr-only">Newsletter Emjy Production</h1>
       <div className="newsletter-intro reveal">
         <div className="newsletter-title-row">
           <h2 className="newsletter-title">Newsletter</h2>

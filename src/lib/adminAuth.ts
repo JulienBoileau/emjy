@@ -1,8 +1,11 @@
 import {
+  EmailAuthProvider,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  reauthenticateWithCredential,
   signInWithEmailAndPassword,
   signOut,
+  updatePassword,
   type User
 } from 'firebase/auth';
 import { auth } from './firebaseAdmin';
@@ -54,4 +57,16 @@ export async function signInAdmin(email: string, password: string): Promise<void
 
 export async function signOutAdmin(): Promise<void> {
   await signOut(auth);
+}
+
+export async function changeAdminPassword(currentPassword: string, newPassword: string): Promise<void> {
+  const currentUser = auth.currentUser;
+
+  if (!currentUser?.email) {
+    throw new Error('Session admin introuvable. Reconnecte-toi puis réessaie.');
+  }
+
+  const credential = EmailAuthProvider.credential(currentUser.email, currentPassword);
+  await reauthenticateWithCredential(currentUser, credential);
+  await updatePassword(currentUser, newPassword);
 }

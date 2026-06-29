@@ -12,6 +12,13 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "redirects": [
+      {
+        "source": "/",
+        "destination": "/accueil",
+        "type": 301
+      }
+    ],
     "rewrites": [
       {
         "source": "**",

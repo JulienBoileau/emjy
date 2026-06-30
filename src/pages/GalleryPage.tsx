@@ -44,8 +44,8 @@ export function GalleryPage() {
     <section className="gallery-page">
       <h1 className="sr-only">Galerie photo Emjy Production</h1>
       <header className="gallery-hero">
-        <h2>Albums photo immersifs</h2>
-        <p>Clique sur un album puis navigue dans les photos.</p>
+        <h2>ALBUMS PHOTO</h2>
+        <p>Découvrez ici toutes les photos de nos évènements</p>
       </header>
 
       <div className="albums-grid">

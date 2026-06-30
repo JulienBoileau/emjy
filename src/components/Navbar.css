@@ -79,6 +79,10 @@
   transition: transform 220ms ease, border-color 220ms ease, background 220ms ease, box-shadow 220ms ease, color 220ms ease;
 }
 
+.nav-link-icon {
+  display: none;
+}
+
 .nav-links a::before {
   content: '';
   position: absolute;
@@ -157,6 +161,10 @@
 }
 
 @media (max-width: 900px) {
+  body.menu-open {
+    overflow: hidden;
+  }
+
   .navbar {
     width: calc(100% - 1rem);
     min-height: 82px;
@@ -205,6 +213,14 @@
   .nav-links a {
     width: 100%;
     justify-content: flex-start;
+    gap: 0.55rem;
+  }
+
+  .nav-link-icon {
+    display: inline-flex;
+    width: 1.05rem;
+    justify-content: center;
+    flex: 0 0 auto;
   }
 
   .newsletter-item {
@@ -222,5 +238,20 @@
     position: static;
     transform: none;
     padding-top: 0.75rem;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .social-icons a {
+    width: 42px;
+    min-width: 42px;
+    height: 42px;
+    padding: 0;
+    border-radius: 50%;
+    justify-content: center;
+  }
+
+  .social-icons a::before {
+    display: none;
   }
 }

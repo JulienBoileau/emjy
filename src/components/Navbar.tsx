@@ -1,17 +1,27 @@
-import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
 const links = [
-  { to: '/presentation', label: 'PRÉSENTATION' },
-  { to: '/services', label: 'NOS SERVICES' },
-  { to: '/agenda', label: 'AGENDA' },
-  { to: '/galerie', label: 'GALERIE' },
-  { to: '/contact', label: 'CONTACT' }
+  { to: '/presentation', label: 'PRÉSENTATION', icon: 'fa-regular fa-user' },
+  { to: '/services', label: 'NOS SERVICES', icon: 'fa-solid fa-clapperboard' },
+  { to: '/agenda', label: 'AGENDA', icon: 'fa-regular fa-calendar-days' },
+  { to: '/galerie', label: 'GALERIE', icon: 'fa-regular fa-images' },
+  { to: '/contact', label: 'CONTACT', icon: 'fa-regular fa-envelope' }
 ];
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    document.body.classList.toggle('menu-open', open);
+    return () => document.body.classList.remove('menu-open');
+  }, [open]);
 
   return (
     <nav className="navbar" aria-label="Navigation principale">
@@ -29,7 +39,8 @@ export function Navbar() {
         {links.map((link) => (
           <li key={link.to}>
             <NavLink to={link.to} onClick={() => setOpen(false)}>
-              {link.label}
+              <i className={`${link.icon} nav-link-icon`} aria-hidden="true" />
+              <span>{link.label}</span>
             </NavLink>
           </li>
         ))}
@@ -39,7 +50,8 @@ export function Navbar() {
             className="newsletter-btn"
             onClick={() => setOpen(false)}
           >
-            NEWSLETTER
+            <i className="fa-regular fa-paper-plane nav-link-icon" aria-hidden="true" />
+            <span>NEWSLETTER</span>
           </NavLink>
         </li>
         <li className="social-icons">
